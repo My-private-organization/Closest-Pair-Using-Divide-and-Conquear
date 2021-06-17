@@ -32,21 +32,11 @@ public class SecondClosestPair {
                         closestPair.setHouse1(houseArrayList.get(i));
                         closestPair.setHouse2(houseArrayList.get(j));
                         closestPair.setDistance(distance);
-                    } else if (distance < secondClosestPair.getDistance() && distance != closestPair.getDistance()) {
-                        secondClosestPair.setHouse1(houseArrayList.get(i));
-                        secondClosestPair.setHouse2(houseArrayList.get(j));
-                        secondClosestPair.setDistance(distance);
                     }
-
 
                     minValue = distance;
 
-                } else if (distance < secondClosestPair.getDistance() && distance != closestPair.getDistance()) {
-                    secondClosestPair.setHouse1(houseArrayList.get(i));
-                    secondClosestPair.setHouse2(houseArrayList.get(j));
-                    secondClosestPair.setDistance(distance);
                 }
-
             }
         }
 
@@ -72,19 +62,9 @@ public class SecondClosestPair {
                         closestPair.setHouse1(houseArrayList.get(i));
                         closestPair.setHouse2(houseArrayList.get(j));
                         closestPair.setDistance(distance);
-                    } else if (distance < secondClosestPair.getDistance() && distance != closestPair.getDistance()) {
-                        secondClosestPair.setHouse1(houseArrayList.get(i));
-                        secondClosestPair.setHouse2(houseArrayList.get(j));
-                        secondClosestPair.setDistance(distance);
                     }
 
-
                     result = distance;
-
-                } else if (distance < secondClosestPair.getDistance() && distance != closestPair.getDistance()) {
-                    secondClosestPair.setHouse1(houseArrayList.get(i));
-                    secondClosestPair.setHouse2(houseArrayList.get(j));
-                    secondClosestPair.setDistance(distance);
                 }
             }
         }
