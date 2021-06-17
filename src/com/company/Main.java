@@ -16,8 +16,10 @@ public class Main {
         List<House> houseListXSorted = new ArrayList<>();
         List<House> houseListYSorted = new ArrayList<>();
 
+        int i=0;
+
         while (scanner.hasNextLine()) {
-            House house = new House(scanner.nextInt(), scanner.nextInt());
+            House house = new House(scanner.nextInt(), scanner.nextInt(), i++);
             houseListXSorted.add(house);
             houseListYSorted.add(house);
         }
@@ -25,7 +27,12 @@ public class Main {
         houseListXSorted.sort(Comparator.comparingInt(House::x));
         houseListYSorted.sort(Comparator.comparingInt(House::y));
 
-        System.out.println(ClosestPair.closestRecursive(houseListXSorted, houseListYSorted, houseListXSorted.size()));
+        System.out.println(SecondClosestPair.closestRecursive(houseListXSorted, houseListYSorted, houseListXSorted.size()));
 
+        House h1 = SecondClosestPair.getClosestPair().getHouse1();
+        House h2 = SecondClosestPair.getClosestPair().getHouse2();
+
+        System.out.println(h1);
+        System.out.println(h2);
     }
 }

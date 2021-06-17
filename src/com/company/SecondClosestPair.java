@@ -3,31 +3,51 @@ package com.company;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClosestPair {
+public class SecondClosestPair {
+
+    private static final HousePair closestPair = new HousePair();
+    private static HousePair secondClosestPair = new HousePair();
 
     private static double distanceBetweenTwoHouse( House house1, House house2 ) {
-        return Math.sqrt(Math.pow((house1.x() - house2.x()), 2) + Math.pow((house1.y() - house2.y()), 2));
+        return Math.sqrt(Math.pow((house1.x() - house2.x()), 2) +
+                Math.pow((house1.y() - house2.y()), 2));
     }
 
-    private static double calculateCase3( List<House> houseArrayList, int size, double minDistance ) {
+    private static double calculateTheStripCase( List<House> houseArrayList, int size, double minDistance ) {
 
         double minValue = minDistance;
 
         for (int i = 0; i < size; i++) {
             for (int j = i + 1; j < Math.min(size, i + 1 + 7); j++) {
-                minValue = Math.min(minValue, distanceBetweenTwoHouse(houseArrayList.get(i), houseArrayList.get(j)));
+                double distance = distanceBetweenTwoHouse(houseArrayList.get(i), houseArrayList.get(j));
+
+                if (distance < minValue) {
+                    closestPair.setHouse1(houseArrayList.get(i));
+                    closestPair.setHouse2(houseArrayList.get(j));
+                    minValue = distance;
+                }
+
             }
         }
 
         return minValue;
     }
 
-    private static double bruteForce( List<House> houseArrayList, int count ) {
+    private static double calculateDistanceDirectly( List<House> houseArrayList, int count ) {
+
         double result = Integer.MAX_VALUE;
 
         for (int i = 0; i < count; i++) {
             for (int j = i + 1; j < count; j++) {
-                result = Math.min(result, distanceBetweenTwoHouse(houseArrayList.get(i), houseArrayList.get(j)));
+
+                double distance = distanceBetweenTwoHouse(houseArrayList.get(i), houseArrayList.get(j));
+
+                if (distance < result) {
+                    closestPair.setHouse1(houseArrayList.get(i));
+                    closestPair.setHouse2(houseArrayList.get(j));
+
+                    result = distance;
+                }
             }
         }
 
@@ -37,7 +57,7 @@ public class ClosestPair {
     public static double closestRecursive( List<House> houseListXSorted, List<House> houseListYSorted,
                                            int count ) {
         if (count <= 3) {
-            return bruteForce(houseListXSorted, houseListXSorted.size());
+            return calculateDistanceDirectly(houseListXSorted, houseListXSorted.size());
         }
 
         int midPoint = count / 2;
@@ -68,8 +88,11 @@ public class ClosestPair {
             }
         }
 
-        return Math.min(minDistance, calculateCase3(arrayList3, arrayList3.size(), minDistance));
+        return Math.min(minDistance, calculateTheStripCase(arrayList3, arrayList3.size(), minDistance));
 
     }
 
+    public static HousePair getClosestPair() {
+        return closestPair;
+    }
 }
