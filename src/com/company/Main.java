@@ -16,7 +16,7 @@ public class Main {
         List<House> houseListXSorted = new ArrayList<>();
         List<House> houseListYSorted = new ArrayList<>();
 
-        int i=0;
+        int i = 0;
 
         while (scanner.hasNextLine()) {
             House house = new House(scanner.nextInt(), scanner.nextInt(), i++);
@@ -29,10 +29,11 @@ public class Main {
 
         System.out.println(SecondClosestPair.closestRecursive(houseListXSorted, houseListYSorted, houseListXSorted.size()));
 
-        House h1 = SecondClosestPair.getClosestPair().getHouse1();
-        House h2 = SecondClosestPair.getClosestPair().getHouse2();
+        House h1 = SecondClosestPair.getSecondClosestPair().getHouse1();
+        House h2 = SecondClosestPair.getSecondClosestPair().getHouse2();
 
         System.out.println(h1);
         System.out.println(h2);
+        System.out.println(SecondClosestPair.getSecondClosestPair().getDistance());
     }
 }
