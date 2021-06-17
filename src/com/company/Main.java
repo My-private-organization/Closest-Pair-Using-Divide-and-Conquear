@@ -2,10 +2,7 @@ package com.company;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
@@ -28,7 +25,7 @@ public class Main {
         houseListXSorted.sort(Comparator.comparingInt(House::x));
         houseListYSorted.sort(Comparator.comparingInt(House::y));
 
-
+        System.out.println(ClosestPair.closestRecursive(houseListXSorted, houseListYSorted, houseListXSorted.size()));
 
     }
 }
