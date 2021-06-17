@@ -2,6 +2,9 @@ package com.company;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -13,16 +16,18 @@ public class Main {
 
         int n = scanner.nextInt();
 
-        int[] arrX = new int[n];
-        int[] arrY = new int[n];
-
-        int i = 0;
+        List<House> houseListXSorted = new ArrayList<>();
+        List<House> houseListYSorted = new ArrayList<>();
 
         while (scanner.hasNextLine()) {
-            arrX[i] = scanner.nextInt();
-            arrY[i] = scanner.nextInt();
-            i++;
+            House house = new House(scanner.nextInt(), scanner.nextInt());
+            houseListXSorted.add(house);
+            houseListYSorted.add(house);
         }
+
+        houseListXSorted.sort(Comparator.comparingInt(House::x));
+        houseListYSorted.sort(Comparator.comparingInt(House::y));
+
 
 
     }
