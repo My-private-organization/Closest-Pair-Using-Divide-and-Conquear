@@ -5,8 +5,8 @@ import java.util.List;
 
 public class SecondClosestPair {
 
-    private static HousePair closestPair = new HousePair();
-    private static HousePair secondClosestPair = new HousePair();
+    private static final HousePair closestPair = new HousePair();
+    private static final HousePair secondClosestPair = new HousePair();
 
     private static double distanceBetweenTwoHouse( House house1, House house2 ) {
         return Math.sqrt(Math.pow((house1.x() - house2.x()), 2) +
@@ -20,30 +20,36 @@ public class SecondClosestPair {
         for (int i = 0; i < size; i++) {
             for (int j = i + 1; j < Math.min(size, i + 1 + 7); j++) {
 
-                double distance = distanceBetweenTwoHouse(houseArrayList.get(i), houseArrayList.get(j));
-
-                if (distance < minDistance) {
-
-                    if (distance < closestPair.getDistance()) {
-                        secondClosestPair.setHouse1(closestPair.getHouse1());
-                        secondClosestPair.setHouse2(closestPair.getHouse2());
-                        secondClosestPair.setDistance(closestPair.getDistance());
-
-                        closestPair.setHouse1(houseArrayList.get(i));
-                        closestPair.setHouse2(houseArrayList.get(j));
-                        closestPair.setDistance(distance);
-                    }
-
-                    minValue = distance;
-
-                } else if (distance < secondClosestPair.getDistance() && distance > closestPair.getDistance()) {
-                    secondClosestPair.setHouse1(houseArrayList.get(i));
-                    secondClosestPair.setHouse2(houseArrayList.get(j));
-                    secondClosestPair.setDistance(distance);
-                }
+                minValue = getMinDistanceOfTwoHouse(houseArrayList, minDistance, minValue, i, j);
             }
         }
 
+        return minValue;
+    }
+
+    private static double getMinDistanceOfTwoHouse( List<House> houseArrayList, double minDistance, double minValue, int i, int j ) {
+
+        double distance = distanceBetweenTwoHouse(houseArrayList.get(i), houseArrayList.get(j));
+
+        if (distance < minDistance) {
+
+            if (distance < closestPair.getDistance()) {
+                secondClosestPair.setHouse1(closestPair.getHouse1());
+                secondClosestPair.setHouse2(closestPair.getHouse2());
+                secondClosestPair.setDistance(closestPair.getDistance());
+
+                closestPair.setHouse1(houseArrayList.get(i));
+                closestPair.setHouse2(houseArrayList.get(j));
+                closestPair.setDistance(distance);
+            }
+
+            minValue = distance;
+
+        } else if (distance < secondClosestPair.getDistance() && distance > closestPair.getDistance()) {
+            secondClosestPair.setHouse1(houseArrayList.get(i));
+            secondClosestPair.setHouse2(houseArrayList.get(j));
+            secondClosestPair.setDistance(distance);
+        }
         return minValue;
     }
 
@@ -54,27 +60,7 @@ public class SecondClosestPair {
         for (int i = 0; i < count; i++) {
             for (int j = i + 1; j < count; j++) {
 
-                double distance = distanceBetweenTwoHouse(houseArrayList.get(i), houseArrayList.get(j));
-
-                if (distance < result) {
-
-                    if (distance < closestPair.getDistance()) {
-                        secondClosestPair.setHouse1(closestPair.getHouse1());
-                        secondClosestPair.setHouse2(closestPair.getHouse2());
-                        secondClosestPair.setDistance(closestPair.getDistance());
-
-                        closestPair.setHouse1(houseArrayList.get(i));
-                        closestPair.setHouse2(houseArrayList.get(j));
-                        closestPair.setDistance(distance);
-                    }
-
-                    result = distance;
-
-                } else if (distance < secondClosestPair.getDistance() && distance > closestPair.getDistance()) {
-                    secondClosestPair.setHouse1(houseArrayList.get(i));
-                    secondClosestPair.setHouse2(houseArrayList.get(j));
-                    secondClosestPair.setDistance(distance);
-                }
+                result = getMinDistanceOfTwoHouse(houseArrayList, result, result, i, j);
             }
         }
 

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9bfe5306-e27f-4789-9e44-193328281d64" name="Default Changelist" comment="" />
+    <list default="true" id="9bfe5306-e27f-4789-9e44-193328281d64" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/com/company/SecondClosestPair.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/SecondClosestPair.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -138,7 +140,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1623939089318</updated>
-      <workItem from="1623939090856" duration="23898000" />
+      <workItem from="1623939090856" duration="24392000" />
     </task>
     <task id="LOCAL-00001" summary="First Commit">
       <created>1623939179365</created>
@@ -203,7 +205,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623971024698</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Going for duplicate error solution">
+      <created>1623971266220</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1623971266220</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -220,6 +229,7 @@
     <MESSAGE value="yet not solved." />
     <MESSAGE value="Should check for duplicate case." />
     <MESSAGE value="Refined further" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refined further" />
+    <MESSAGE value="Going for duplicate error solution" />
+    <option name="LAST_COMMIT_MESSAGE" value="Going for duplicate error solution" />
   </component>
 </project>
