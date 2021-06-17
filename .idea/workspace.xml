@@ -138,7 +138,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1623939089318</updated>
-      <workItem from="1623939090856" duration="23584000" />
+      <workItem from="1623939090856" duration="23898000" />
     </task>
     <task id="LOCAL-00001" summary="First Commit">
       <created>1623939179365</created>
@@ -196,7 +196,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623970478578</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Refined further">
+      <created>1623971024698</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1623971024698</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -212,6 +219,7 @@
     <MESSAGE value="Still having bug." />
     <MESSAGE value="yet not solved." />
     <MESSAGE value="Should check for duplicate case." />
-    <option name="LAST_COMMIT_MESSAGE" value="Should check for duplicate case." />
+    <MESSAGE value="Refined further" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refined further" />
   </component>
 </project>

@@ -87,6 +87,7 @@ public class SecondClosestPair {
             return calculateDistanceDirectly(houseListXSorted, houseListXSorted.size());
         }
 
+
         int midPoint = count / 2;
         House midHouse = houseListXSorted.get(midPoint);
 
