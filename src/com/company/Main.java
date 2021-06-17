@@ -27,13 +27,12 @@ public class Main {
         houseListXSorted.sort(Comparator.comparingInt(House::x));
         houseListYSorted.sort(Comparator.comparingInt(House::y));
 
-        System.out.println(SecondClosestPair.closestRecursive(houseListXSorted, houseListYSorted, houseListXSorted.size()));
+        SecondClosestPair.closestRecursive(houseListXSorted, houseListYSorted, houseListXSorted.size());
 
         House h1 = SecondClosestPair.getSecondClosestPair().getHouse1();
         House h2 = SecondClosestPair.getSecondClosestPair().getHouse2();
 
-        System.out.println(h1);
-        System.out.println(h2);
-        System.out.println(SecondClosestPair.getSecondClosestPair().getDistance());
+        System.out.println(h1.index() + " " + h2.index());
+        System.out.printf("%.4f", SecondClosestPair.getSecondClosestPair().getDistance());
     }
 }
