@@ -28,7 +28,7 @@ public class Main {
         houseListYSorted.sort(Comparator.comparingInt(House::y));
 
         SecondClosestPair.closestRecursive(houseListXSorted, houseListYSorted, 0,
-                houseListXSorted.size());
+                houseListXSorted.size() - 1);
 
         House h1 = SecondClosestPair.getSecondClosestPair().getHouse1();
         House h2 = SecondClosestPair.getSecondClosestPair().getHouse2();

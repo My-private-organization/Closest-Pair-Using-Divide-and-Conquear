@@ -53,9 +53,8 @@ public class SecondClosestPair {
 
         double result = Double.MAX_VALUE;
 
-        for (int i = startIndex; i < endIndex; i++) {
-            for (int j = i + 1; j < endIndex; j++) {
-
+        for (int i = startIndex; i <= endIndex; i++) {
+            for (int j = i + 1; j <= endIndex; j++) {
                 House house1 = houseArrayList.get(i);
                 House house2 = houseArrayList.get(j);
                 double distance = distanceBetweenTwoHouse(house1, house2);
@@ -84,7 +83,7 @@ public class SecondClosestPair {
 
         ArrayList<House> arrayList3 = new ArrayList<>();
 
-        for (int i = startIndex; i < endIndex; i++) {
+        for (int i = startIndex; i <= endIndex; i++) {
             if (Math.abs(houseListYSorted.get(i).x() - midHouse.x()) < minDistance) {
                 arrayList3.add(houseListYSorted.get(i));
             }
