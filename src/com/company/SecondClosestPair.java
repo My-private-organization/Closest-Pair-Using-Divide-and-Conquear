@@ -72,7 +72,7 @@ public class SecondClosestPair {
     public static double closestRecursive( List<House> houseListXSorted, List<House> houseListYSorted,
                                            int startIndex, int endIndex ) {
 
-        if ((endIndex - startIndex + 1) <= 3) {
+        if ((endIndex - startIndex) <= 3) {
             return calculateDistanceDirectly(houseListXSorted, startIndex, endIndex);
         }
 
@@ -80,12 +80,14 @@ public class SecondClosestPair {
         House midHouse = houseListXSorted.get(midPoint);
 
         double distanceLeft = closestRecursive(houseListXSorted, houseListYSorted, startIndex, midPoint);
-        double distanceRight = closestRecursive(houseListXSorted, houseListYSorted, midPoint, endIndex);
+        double distanceRight = closestRecursive(houseListXSorted, houseListYSorted, midPoint+1, endIndex);
         double minDistance = Math.min(distanceLeft, distanceRight);
 
         ArrayList<House> arrayList3 = new ArrayList<>();
 
-        for (int i = startIndex; i <= endIndex; i++) {
+        int size = houseListXSorted.size();
+
+        for (int i = 0; i < size; i++) {
             if (Math.abs(houseListYSorted.get(i).x() - midHouse.x()) < minDistance) {
                 arrayList3.add(houseListYSorted.get(i));
             }
