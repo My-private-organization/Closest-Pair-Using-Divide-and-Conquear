@@ -16,6 +16,7 @@ public class SecondClosestPair {
     private static double calculateTheStripCase( List<House> houseArrayList, double minDistance ) {
 
         double minValue = minDistance;
+
         int size = houseArrayList.size();
 
         for (int i = 0; i < size; i++) {
@@ -55,6 +56,7 @@ public class SecondClosestPair {
 
         for (int i = startIndex; i <= endIndex; i++) {
             for (int j = i + 1; j <= endIndex; j++) {
+
                 House house1 = houseArrayList.get(i);
                 House house2 = houseArrayList.get(j);
                 double distance = distanceBetweenTwoHouse(house1, house2);
@@ -70,7 +72,7 @@ public class SecondClosestPair {
     public static double closestRecursive( List<House> houseListXSorted, List<House> houseListYSorted,
                                            int startIndex, int endIndex ) {
 
-        if ((endIndex - startIndex) <= 3) {
+        if ((endIndex - startIndex + 1) <= 3) {
             return calculateDistanceDirectly(houseListXSorted, startIndex, endIndex);
         }
 
