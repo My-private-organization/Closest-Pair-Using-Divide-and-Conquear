@@ -13,54 +13,55 @@ public class SecondClosestPair {
                 Math.pow((house1.y() - house2.y()), 2));
     }
 
-    private static double calculateTheStripCase( List<House> houseArrayList, int size, double minDistance ) {
+    private static double calculateTheStripCase( List<House> houseArrayList, double minDistance ) {
 
         double minValue = minDistance;
+        int size = houseArrayList.size();
 
         for (int i = 0; i < size; i++) {
             for (int j = i + 1; j < Math.min(size, i + 1 + 7); j++) {
 
-                minValue = getMinDistanceOfTwoHouse(houseArrayList, minDistance, minValue, i, j);
+                House house1 = houseArrayList.get(i);
+                House house2 = houseArrayList.get(j);
+                double distance = distanceBetweenTwoHouse(house1, house2);
+
+                updateSecondClosest(house1, house2, distance);
+                minValue = Math.min(minDistance, distance);
             }
         }
 
         return minValue;
     }
 
-    private static double getMinDistanceOfTwoHouse( List<House> houseArrayList, double minDistance, double minValue, int i, int j ) {
+    private static void updateSecondClosest( House house1, House house2, double distance ) {
+        if (distance < closestPair.getDistance()) {
+            secondClosestPair.setHouse1(closestPair.getHouse1());
+            secondClosestPair.setHouse2(closestPair.getHouse2());
+            secondClosestPair.setDistance(closestPair.getDistance());
 
-        double distance = distanceBetweenTwoHouse(houseArrayList.get(i), houseArrayList.get(j));
-
-        if (distance < minDistance) {
-
-            if (distance < closestPair.getDistance()) {
-                secondClosestPair.setHouse1(closestPair.getHouse1());
-                secondClosestPair.setHouse2(closestPair.getHouse2());
-                secondClosestPair.setDistance(closestPair.getDistance());
-
-                closestPair.setHouse1(houseArrayList.get(i));
-                closestPair.setHouse2(houseArrayList.get(j));
-                closestPair.setDistance(distance);
-            }
-
-            minValue = distance;
-
+            closestPair.setHouse1(house1);
+            closestPair.setHouse2(house2);
+            closestPair.setDistance(distance);
         } else if (distance < secondClosestPair.getDistance() && distance > closestPair.getDistance()) {
-            secondClosestPair.setHouse1(houseArrayList.get(i));
-            secondClosestPair.setHouse2(houseArrayList.get(j));
+            secondClosestPair.setHouse1(house1);
+            secondClosestPair.setHouse2(house2);
             secondClosestPair.setDistance(distance);
         }
-        return minValue;
     }
 
-    private static double calculateDistanceDirectly( List<House> houseArrayList, int count ) {
+    private static double calculateDistanceDirectly( List<House> houseArrayList, int startIndex, int endIndex ) {
 
-        double result = Integer.MAX_VALUE;
+        double result = Double.MAX_VALUE;
 
-        for (int i = 0; i < count; i++) {
-            for (int j = i + 1; j < count; j++) {
+        for (int i = startIndex; i < endIndex; i++) {
+            for (int j = i + 1; j < endIndex; j++) {
 
-                result = getMinDistanceOfTwoHouse(houseArrayList, result, result, i, j);
+                House house1 = houseArrayList.get(i);
+                House house2 = houseArrayList.get(j);
+                double distance = distanceBetweenTwoHouse(house1, house2);
+
+                updateSecondClosest(house1, house2, distance);
+                result = Math.min(result, distance);
             }
         }
 
@@ -68,41 +69,28 @@ public class SecondClosestPair {
     }
 
     public static double closestRecursive( List<House> houseListXSorted, List<House> houseListYSorted,
-                                           int count ) {
-        if (count <= 3) {
-            return calculateDistanceDirectly(houseListXSorted, houseListXSorted.size());
+                                           int startIndex, int endIndex ) {
+
+        if ((endIndex - startIndex) <= 3) {
+            return calculateDistanceDirectly(houseListXSorted, startIndex, endIndex);
         }
 
-
-        int midPoint = count / 2;
+        int midPoint = (startIndex + endIndex) / 2;
         House midHouse = houseListXSorted.get(midPoint);
 
-        ArrayList<House> newHouseX1 = new ArrayList<>();
-        ArrayList<House> newHouseX2 = new ArrayList<>();
-        int size = houseListXSorted.size();
-
-        for (int i = 0; i < midPoint; i++) {
-            newHouseX1.add(houseListXSorted.get(i));
-        }
-
-        for (int i = midPoint; i < size; i++) {
-            newHouseX2.add(houseListXSorted.get(i));
-        }
-
-        double distanceLeft = closestRecursive(newHouseX1, houseListYSorted, midPoint);
-        double distanceRight = closestRecursive(newHouseX2, houseListYSorted, count - midPoint);
-
+        double distanceLeft = closestRecursive(houseListXSorted, houseListYSorted, startIndex, midPoint);
+        double distanceRight = closestRecursive(houseListXSorted, houseListYSorted, midPoint, endIndex);
         double minDistance = Math.min(distanceLeft, distanceRight);
 
         ArrayList<House> arrayList3 = new ArrayList<>();
 
-        for (int i = 0; i < count; i++) {
+        for (int i = startIndex; i < endIndex; i++) {
             if (Math.abs(houseListYSorted.get(i).x() - midHouse.x()) < minDistance) {
                 arrayList3.add(houseListYSorted.get(i));
             }
         }
 
-        return Math.min(minDistance, calculateTheStripCase(arrayList3, arrayList3.size(), minDistance));
+        return Math.min(minDistance, calculateTheStripCase(arrayList3, minDistance));
 
     }
 
